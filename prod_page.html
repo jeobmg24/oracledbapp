@@ -1,0 +1,36 @@
+<h2>Products</h2>
+<h3>{{store_loc}} Location </h3>
+<h3>User: {{c_name}}</h3>
+
+<form method="POST" action="/save_cart">
+<table aria-label="Products table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Size</th>
+            <th scope="col">$ Price</th>
+            <th scope="col">Available</th>
+            <th scope="col">Your Qty</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in options %}
+        <tr data-name="{{ product[1] }}">
+            <td>{{ product[1] }}</td>
+            <td>{{ product[0] }}</td>
+            <td>{{ product[2] }}</td>
+            <td>{{ product[3] }}</td>
+            <td>{{ product[4] }}</td>
+            <td>
+                <input class="qty-input" 
+                type="number" min="0" max="{{ product[4] }}" 
+                value="0" aria-label="Quantity for {{ product[1] }}"
+                name="q_{{product[5]}}">
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<button type="submit" class="add-to-cart">Add to cart</button>
+</form>
