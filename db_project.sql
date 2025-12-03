@@ -228,4 +228,82 @@ END;
 
 SHOW ERRORS TRIGGER trg_customer_bi;
 
-select * from Product
+INSERT INTO STORES (store_id, s_hours, s_location) VALUES
+(1, '8 A.M.-9 A.M.', 'Victor'),
+(2, '6 A.M-9 P.M.', 'Watertown'),
+(3, '7 A.M.-9 P.M.', 'Birmingham');
+
+select * from stores;
+
+INSERT INTO Customer (
+    frequent_shopper,
+    first_name,
+    last_name,
+    phone_number,
+    points
+) VALUES 
+(    1,    'Jacob',    'Goldstein',    5164772490,    0),
+(    1,    'Casey',    'Provitera',    987654321,    0),
+(    1,    'Yuan',    'Hong',    0123456789,    0),
+(    1,    'Joseph',    'Callanan',    9173456600,    0),
+(    0,    'Lebron',    'James',    0001112345,    0);
+
+select * from customer;
+
+INSERT INTO Product (upc_code, brand, p_type, p_name, p_size)
+VALUES
+    (100001, 'Kelloggs', 'Cereal', 'Frosted Flakes', '18 oz'),
+    (100002, 'General Mills', 'Cereal', 'Cheerios', '14 oz'),
+    (100003, 'Post', 'Cereal', 'Honey Bunches', '16 oz'),
+    (100004, 'Quaker', 'Oatmeal', 'Instant Oats', '12 oz'),
+    (100005, 'Nature Valley', 'Snack', 'Granola Bars', '10 ct'),
+
+    (100006, 'Pepsi', 'Beverage', 'Pepsi Cola', '12 pack'),
+    (100007, 'Coca-Cola', 'Beverage', 'Coca-Cola', '20 oz'),
+    (100008, 'Gatorade', 'Beverage', 'Gatorade Lemon', '32 oz'),
+    (100009, 'Poland Spring', 'Water', 'Spring Water', '24 pack'),
+    (100010, 'Starbucks', 'Coffee', 'Cold Brew', '11 oz'),
+
+    (100011, 'Nestle', 'Candy', 'Crunch Bar', '1.5 oz'),
+    (100012, 'Hershey', 'Candy', 'Hershey Bar', '1.6 oz'),
+    (100013, 'Snickers', 'Candy', 'Snickers Bar', '1.8 oz'),
+    (100014, 'M&M', 'Candy', 'Peanut M&M', '5 oz'),
+    (100015, 'Reese''s', 'Candy', 'Reese''s Cups', '2 pk'),
+
+    (100016, 'Tostitos', 'Chips', 'Tortilla Chips', '13 oz'),
+    (100017, 'Lays', 'Chips', 'Classic Lays', '8 oz'),
+    (100018, 'Doritos', 'Chips', 'Nacho Cheese', '9.25 oz'),
+    (100019, 'Ruffles', 'Chips', 'Original', '8.5 oz'),
+    (100020, 'Pringles', 'Chips', 'Original', '5.5 oz');
+
+select * from product;
+
+INSERT INTO Inventory (store_ID, upc_code, i_quantity, m_price, fs_price) VALUES
+-- Store 1: Victor
+(1, 100001, 45.00, 4.99, 4.49),
+(1, 100003, 30.00, 5.49, 4.99),
+(1, 100006, 120.00, 7.99, 6.99),
+(1, 100009, 60.00, 4.49, 3.99),
+(1, 100013, 150.00, 1.69, 1.49),
+(1, 100017, 40.00, 3.99, 3.49),
+(1, 100020, 25.00, 2.29, 1.99),
+
+-- Store 2: Watertown
+(2, 100002, 50.00, 4.59, 4.09),
+(2, 100004, 20.00, 3.99, 3.49),
+(2, 100007, 100.00, 1.99, 1.79),
+(2, 100011, 90.00, 1.39, 1.19),
+(2, 100016, 35.00, 4.29, 3.79),
+(2, 100018, 45.00, 4.49, 3.99),
+
+-- Store 3: Birmingham
+(3, 100005, 25.00, 5.49, 4.99),
+(3, 100008, 70.00, 2.49, 2.29),
+(3, 100010, 40.00, 3.99, 3.49),
+(3, 100012, 130.00, 1.49, 1.29),
+(3, 100014, 55.00, 2.99, 2.59),
+(3, 100015, 65.00, 1.79, 1.49),
+(3, 100019, 50.00, 3.99, 3.49);
+
+
+commit;
