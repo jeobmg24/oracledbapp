@@ -1,0 +1,16 @@
+<title>
+    Customer
+</title>
+<h1>
+    Customer
+</h1>
+
+<h1>
+    Select a Customer ID:
+</h1>
+<select id="myDropdown" name="selected_option">
+    <option value="" disabled selected>-- Choose an option --</option>
+    {% for option in options %}
+        <option value="{{ option }}">{{ option }}</option>
+    {% endfor %}
+</select>

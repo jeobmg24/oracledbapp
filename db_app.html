@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<title>Database Project Application Webpage
+</title>
+
+
+
+<form action="/submit_form" method="post">
+    <h1>
+        Select a Store Option:
+    </h1>
+    <select name="store">
+        <option value="" disabled selected>-- Choose an option --</option>
+        {% for option in options %}
+            <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+    </select>
+
+    <h1>
+        What type of user are you 
+    </h1>
+    <select name="Users">
+        <option value="Customer">Customer</option>
+        <option value="Employee">Employee</option>
+    </select>
+
+    <button type="submit">
+        Submit
+    </button>
+</form>
