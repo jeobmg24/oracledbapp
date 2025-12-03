@@ -1,0 +1,42 @@
+<h2>Products</h2>
+<a href="{{ url_for('view_cart') }}">View Cart</a>
+
+<table aria-label="Products table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Size</th>
+            <th scope="col">Price $</th>
+            <th scope="col">Available</th>
+            <th scope="col">Your Qty</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in options %}
+        <tr>
+            <td>{{ product[2] }}</td>
+            <td>{{ product[1] }}</td>
+            <td>{{ product[3] }}</td>
+            <td>{{ product[4] }}</td>
+            <td>{{ product[5] }}</td>
+            <td>
+                <form method="post" action="{{ url_for('add_to_cart') }}">
+                    <input name="qty" type="number" min="1" max="{{ product[5] }}" value="1" aria-label="Quantity for {{ product[2] }}">
+                    <input type="hidden" name="upc" value="{{ product[0] }}">
+                    <input type="hidden" name="name" value="{{ product[2] }}">
+                    <input type="hidden" name="brand" value="{{ product[1] }}">
+                    <input type="hidden" name="size" value="{{ product[3] }}">
+                    <input type="hidden" name="price" value="{{ product[4] }}">
+                    <input type="hidden" name="available" value="{{ product[5] }}">
+                    <div class="table-actions">
+                        <button type="submit">Add to cart</button>
+                    </div>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('view_cart') }}">View Cart</a>
