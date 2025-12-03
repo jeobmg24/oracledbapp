@@ -1,0 +1,32 @@
+<h2>Products</h2>
+
+<table aria-label="Products table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Size</th>
+            <th scope="col">Available</th>
+            <th scope="col">Your Qty</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+        <tr data-name="{{ product.name }}">
+            <td>{{ product.name }}</td>
+            <td>{{ product.brand }}</td>
+            <td>{{ product.size }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>
+                <input class="qty-input" type="number" min="1" max="{{ product.quantity }}" value="1" aria-label="Quantity for {{ product.name }}">
+            </td>
+            <td>
+                <div class="table-actions">
+                    <button type="button" class="add-to-cart">Add to cart</button>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
