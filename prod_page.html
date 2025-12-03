@@ -6,20 +6,22 @@
             <th scope="col">Name</th>
             <th scope="col">Brand</th>
             <th scope="col">Size</th>
+            <th scope="col">Price $</th>
             <th scope="col">Available</th>
             <th scope="col">Your Qty</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
-    {% for product in products %}
-        <tr data-name="{{ product.name }}">
-            <td>{{ product.name }}</td>
-            <td>{{ product.brand }}</td>
-            <td>{{ product.size }}</td>
-            <td>{{ product.quantity }}</td>
+    {% for product in options %}
+        <tr data-name="{{ product[1] }}">
+            <td>{{ product[1] }}</td>
+            <td>{{ product[0] }}</td>
+            <td>{{ product[2] }}</td>
+            <td>{{ product[3] }}</td>
+            <td>{{ product[4] }}</td>
             <td>
-                <input class="qty-input" type="number" min="1" max="{{ product.quantity }}" value="1" aria-label="Quantity for {{ product.name }}">
+                <input class="qty-input" type="number" min="1" max="{{ product[4] }}" value="1" aria-label="Quantity for {{ product[1] }}">
             </td>
             <td>
                 <div class="table-actions">
