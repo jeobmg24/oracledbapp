@@ -1,10 +1,3 @@
-drop table Customer;
-drop TABLE employee;
-drop table manages;
-drop table sales;
-drop table product;
-
-
 -- serial is not a valid key word in oracle
 -- need to replace all the times serial is used with a auto increiment trigger
 
@@ -33,13 +26,17 @@ create table Stores (
 );
 
 create table Vendor (
-    vendor_ID INT primary key,
+    vendor_ID INT,
     upc_code int NOT NULL,
-    price numeric (8,2), 
+    price numeric (8,2),
+    CONSTRAINT pk_vendor PRIMARY KEY (vendor_ID, upc_code),
     CONSTRAINT fk_vendor_product
         FOREIGN KEY (upc_code)
         REFERENCES Product(upc_code)
 );
+
+drop table Vendor;
+drop table Orders;
 
 create table Inventory (
     store_ID INT NOT NULL,
@@ -69,8 +66,8 @@ create table Orders (
         FOREIGN KEY (upc_code)
         REFERENCES Product(upc_code),
     CONSTRAINT fk_orders_vendor                     
-        FOREIGN KEY (vendor_ID)
-        REFERENCES Vendor(vendor_ID)
+        FOREIGN KEY (vendor_ID, upc_code)
+        REFERENCES Vendor(vendor_ID, upc_code)
 );
 
 create table Category (
@@ -304,6 +301,121 @@ INSERT INTO Inventory (store_ID, upc_code, i_quantity, m_price, fs_price) VALUES
 (3, 100014, 55.00, 2.99, 2.59),
 (3, 100015, 65.00, 1.79, 1.49),
 (3, 100019, 50.00, 3.99, 3.49);
+
+-- Vendor 1 (SupplierCo)
+INSERT INTO Vendor (vendor_ID, upc_code, price) VALUES
+(1, 100002, 3.40),
+(1, 100003, 3.90),
+(1, 100004, 2.80),
+(1, 100005, 3.60),
+(1, 100006, 5.80),
+(1, 100007, 1.30),
+(1, 100008, 1.70),
+(1, 100009, 3.10),
+(1, 100010, 2.90),
+(1, 100011, 0.90),
+(1, 100012, 1.00),
+(1, 100013, 1.10),
+(1, 100014, 1.90),
+(1, 100015, 1.20),
+(1, 100016, 3.10),
+(1, 100017, 2.80),
+(1, 100018, 3.20),
+(1, 100019, 2.80),
+(1, 100020, 1.40);
+
+-- Vendor 2 (FoodSource)
+INSERT INTO Vendor (vendor_ID, upc_code, price) VALUES
+(2, 100001, 3.60),
+(2, 100002, 3.30),
+(2, 100003, 3.80),
+(2, 100004, 2.70),
+(2, 100005, 3.50),
+(2, 100006, 5.70),
+(2, 100007, 1.20),
+(2, 100008, 1.60),
+(2, 100009, 3.00),
+(2, 100010, 2.80),
+(2, 100011, 0.85),
+(2, 100012, 0.95),
+(2, 100013, 1.05),
+(2, 100014, 1.80),
+(2, 100015, 1.15),
+(2, 100016, 3.00),
+(2, 100017, 2.70),
+(2, 100018, 3.10),
+(2, 100019, 2.70),
+(2, 100020, 1.35);
+
+-- Vendor 3 (National Wholesale)
+INSERT INTO Vendor (vendor_ID, upc_code, price) VALUES
+(3, 100001, 3.55),
+(3, 100002, 3.20),
+(3, 100003, 3.75),
+(3, 100004, 2.65),
+(3, 100005, 3.45),
+(3, 100006, 5.60),
+(3, 100007, 1.15),
+(3, 100008, 1.55),
+(3, 100009, 2.95),
+(3, 100010, 2.75),
+(3, 100011, 0.83),
+(3, 100012, 0.90),
+(3, 100013, 1.00),
+(3, 100014, 1.75),
+(3, 100015, 1.10),
+(3, 100016, 2.95),
+(3, 100017, 2.65),
+(3, 100018, 3.05),
+(3, 100019, 2.65),
+(3, 100020, 1.30);
+
+-- Vendor 4 (BulkFoods Ltd)
+INSERT INTO Vendor (vendor_ID, upc_code, price) VALUES
+(4, 100001, 3.50),
+(4, 100002, 3.10),
+(4, 100003, 3.70),
+(4, 100004, 2.60),
+(4, 100005, 3.40),
+(4, 100006, 5.50),
+(4, 100007, 1.10),
+(4, 100008, 1.50),
+(4, 100009, 2.90),
+(4, 100010, 2.70),
+(4, 100011, 0.80),
+(4, 100012, 0.88),
+(4, 100013, 0.98),
+(4, 100014, 1.70),
+(4, 100015, 1.05),
+(4, 100016, 2.90),
+(4, 100017, 2.60),
+(4, 100018, 3.00),
+(4, 100019, 2.60),
+(4, 100020, 1.28);
+
+-- Vendor 5 (FreshSupply Inc)
+INSERT INTO Vendor (vendor_ID, upc_code, price) VALUES
+(5, 100001, 3.45),
+(5, 100002, 3.05),
+(5, 100003, 3.65),
+(5, 100004, 2.55),
+(5, 100005, 3.35),
+(5, 100006, 5.45),
+(5, 100007, 1.05),
+(5, 100008, 1.48),
+(5, 100009, 2.88),
+(5, 100010, 2.65),
+(5, 100011, 0.78),
+(5, 100012, 0.85),
+(5, 100013, 0.95),
+(5, 100014, 1.68),
+(5, 100015, 1.03),
+(5, 100016, 2.88),
+(5, 100017, 2.58),
+(5, 100018, 2.98),
+(5, 100019, 2.55),
+(5, 100020, 1.25);
+
 
 
 commit;
