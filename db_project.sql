@@ -98,7 +98,7 @@ create table Transaction_History (
     sales_ID INT primary key,
     store_ID INT NOT NULL,
     customer_ID INT NOT NULL,
-    date_time TIME,
+    date_time DATE,
     points_used int default 0, 
     CONSTRAINT fk_th_store                             
         FOREIGN KEY (store_ID)
