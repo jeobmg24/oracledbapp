@@ -1,7 +1,42 @@
 <title>
     Employee
 </title>
-<header>
-    Employee
-</header>
+<h2>
+    Inventory Information 
+</h2>
+<h3>{{store_loc}} Location </h3>
 <a href="{{ request.referrer or url_for('home') }}">Back</a>
+
+<form method="POST" action="/save_inventory">
+<table aria-label="Products table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">M Price $</th>
+            <th scope="col">FS Price $</th>
+            <th scope="col">Available</th>
+            <th scope="col">Your Qty</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in options %}
+        <tr data-name="{{ product[1] }}">
+            <td>{{ product[2] }}</td>
+            <td>{{ product[1] }}</td>
+            <td>{{ product[3] }}</td>
+            <td>{{ product[4] }}</td>
+            <td>{{ product[5] }}</td>
+            <td>
+                <input class="qty-input" 
+                type="number" min="0" 
+                value="0" aria-label="Quantity for {{ product[2] }}"
+                name="q_{{product[0]}}">            
+            </td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<button type="submit" class="restock">Restock</button>
+</form>

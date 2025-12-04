@@ -1,0 +1,28 @@
+<h2>Vendors</h2>
+
+<form method="POST" action="/buy_from_v">
+<table aria-label="Vendors table">
+    <thead>
+        <tr>
+            <th scope="col">Vendor ID</th>
+            <th scope="col">UPC_CODE</th>
+            <th scope="col">$ Price</th>
+            <th scope="col">Purchase</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for vendor in v %}
+        <tr data-name="{{ vendor[1] }}">
+            <td>{{ vendor[0] }}</td>
+            <td>{{ vendor[1] }}</td>
+            <td>{{ vendor[2] }}</td>
+            <td>
+                <input class="qty-input" 
+                type="checkbox" name="check_{{vendor[0]}}_{{vendor[1]}}">
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<button type="submit" class="add-to-cart">Purchase</button>
+</form>
